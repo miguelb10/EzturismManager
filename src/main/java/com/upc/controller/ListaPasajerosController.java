@@ -29,13 +29,13 @@ public class ListaPasajerosController {
         return new ResponseEntity<List<ListaPasajeros>>(listaPasajeros, HttpStatus.OK);
     }
 
-    @PostMapping
+    /*@PostMapping
     public ResponseEntity<Object> registrar(@Valid @RequestBody ListaPasajeros listaPasajeros) {
         ListaPasajeros listPas = new ListaPasajeros();
         listPas = listaPasajerosService.registrar(listaPasajeros);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(listPas.getId())
                 .toUri();
         return ResponseEntity.created(location).build();
-    }
+    }*/
 
 }

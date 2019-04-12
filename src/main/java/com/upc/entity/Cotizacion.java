@@ -20,11 +20,11 @@ public class Cotizacion {
 	private Integer id;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_cliente", nullable = false)
+	@JoinColumn(name = "cliente_id", nullable = false)
 	private Cliente cliente;
 	
 	@OneToOne
-	@JoinColumn(name = "id_paquete", nullable = false)
+	@JoinColumn(name = "paquete_id", nullable = false)
 	private Paquete paquete;
 	private String notas;
 	private String estado;

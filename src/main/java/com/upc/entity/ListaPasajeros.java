@@ -3,7 +3,7 @@ package com.upc.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="lista de pasajeros")
+@Table(name="ListaPasajeros")
 public class ListaPasajeros {
 
     @Id

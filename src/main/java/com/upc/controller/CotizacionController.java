@@ -16,32 +16,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.upc.entity.Paquete;
-import com.upc.service.PaqueteService;
+import com.upc.entity.Cotizacion;
+import com.upc.service.CotizacionService;
 
-@RestController
-@RequestMapping(name="/paquete")
-public class PaqueteController {
-	
+//@RestController
+//@RequestMapping(name="/cotizacion")
+public class CotizacionController {
+/*
 	@Autowired
-	private PaqueteService paqueteService;
+	private CotizacionService cotizacionService;
 	
 	@GetMapping
-    public ResponseEntity<List<Paquete>> listar(){
+    public ResponseEntity<List<Cotizacion>> listar(){
 
-        List<Paquete> paquetes = new ArrayList<>();
-        paquetes = paqueteService.listar();
+        List<Cotizacion> cotizaciones = new ArrayList<>();
+        cotizaciones = cotizacionService.listar();
 
-        return new ResponseEntity<List<Paquete>>(paquetes, HttpStatus.OK);
+        return new ResponseEntity<List<Cotizacion>>(cotizaciones, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Object> registrar(@Valid @RequestBody Paquete paquete) {
-        Paquete paq = new Paquete();
-        paq = paqueteService.registrar(paquete);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(paq.getId())
+    public ResponseEntity<Object> registrar(@Valid @RequestBody Cotizacion cotizacion) {
+        Cotizacion cot = new Cotizacion();
+        cot = cotizacionService.registrar(cotizacion);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cot.getId())
                 .toUri();
         return ResponseEntity.created(location).build();
-    }
-
+    }*/
 }
