@@ -11,7 +11,7 @@ public class Servicio {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="id_proveedor", nullable = false)
+    @JoinColumn(name="proveedor_id", nullable = false)
     private Proveedor proveedor;
 
     private String tipoServicio;
