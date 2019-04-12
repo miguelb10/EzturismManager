@@ -26,6 +26,9 @@ public class Cliente {
 	private String direccion;
 	private String profesion;
 	private String hobbies;
+	private String DNI;
+	private String nacionalidad;
+	private String tipoCliente;
 	public Integer getId() {
 		return id;
 	}
@@ -92,7 +95,22 @@ public class Cliente {
 	public void setHobbies(String hobbies) {
 		this.hobbies = hobbies;
 	}
-	
-	
-
+	public String getDNI() {
+		return DNI;
+	}
+	public void setDNI(String dNI) {
+		DNI = dNI;
+	}
+	public String getNacionalidad() {
+		return nacionalidad;
+	}
+	public void setNacionalidad(String nacionalidad) {
+		this.nacionalidad = nacionalidad;
+	}
+	public String getTipoCliente() {
+		return tipoCliente;
+	}
+	public void setTipoCliente(String tipoCliente) {
+		this.tipoCliente = tipoCliente;
+	}
 }

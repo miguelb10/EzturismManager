@@ -17,15 +17,15 @@ public class ClienteServiceImpl implements ClienteService{
 	private ClienteRepository clienteRepository;
 	
 	@Override
-	public Cliente registrar(Cliente t) {
+	public Cliente registrar(Cliente cliente) {
 		// TODO Auto-generated method stub
-		return clienteRepository.save(t);
+		return clienteRepository.save(cliente);
 	}
 
 	@Override
-	public Cliente modificar(Cliente t) {
+	public Cliente modificar(Cliente cliente) {
 		// TODO Auto-generated method stub
-		return clienteRepository.save(t);
+		return clienteRepository.save(cliente);
 	}
 
 	@Override
