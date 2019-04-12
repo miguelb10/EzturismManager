@@ -1,17 +1,26 @@
 package com.upc.controller;
 
+import com.upc.entity.Cliente;
 import com.upc.entity.Servicio;
+import com.upc.exception.ModeloNotFoundException;
 import com.upc.service.ServicioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/servicios")
@@ -28,6 +37,19 @@ public class ServicioController {
 
         return new ResponseEntity<List<Servicio>>(servicios, HttpStatus.OK);
     }
+    @GetMapping(value = "/{id}")
+	public Resource<Servicio> listarId(@PathVariable("id") Integer id) {
+		Optional<Servicio> serv = servicioService.listarId(id);
+		if (!serv.isPresent()) {
+			throw new ModeloNotFoundException("ID: " + id);
+		}
+		
+		Resource<Servicio> resource = new Resource<Servicio>(serv.get());
+		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).listarId(id));
+		resource.add(linkTo.withRel("Consulta-resource"));
+		
+		return resource;
+	}
 
     @PostMapping
     public ResponseEntity<Object> registrar(@Valid @RequestBody Servicio servicio) {
@@ -37,5 +59,21 @@ public class ServicioController {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
+    
+    @PutMapping
+	public ResponseEntity<Object> actualizar(@Valid @RequestBody Servicio servicio) {		
+    	servicioService.modificar(servicio);
+		return new ResponseEntity<Object>(HttpStatus.OK);
+	}
+	
+	@DeleteMapping
+	public void eliminar(@PathVariable Integer id) {
+		Optional<Servicio> cli = servicioService.listarId(id);
+		if (!cli.isPresent()) {
+			throw new ModeloNotFoundException("ID: " + id);
+		} else {
+			servicioService.eliminar(id);
+		}
+	}
 
 }
