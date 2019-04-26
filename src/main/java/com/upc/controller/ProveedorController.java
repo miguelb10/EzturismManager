@@ -39,7 +39,7 @@ public class ProveedorController {
     @GetMapping(value = "/{id}")
 	public Resource<Proveedor> listarId(@PathVariable("id") Integer id) {
 		Optional<Proveedor> prov = proveedorService.listarId(id);
-		if (!cli.isPresent()) {
+		if (!prov.isPresent()) {
 			throw new ModeloNotFoundException("ID: " + id);
 		}
 		
