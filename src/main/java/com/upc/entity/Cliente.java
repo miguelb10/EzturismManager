@@ -29,6 +29,7 @@ public class Cliente {
 	private String DNI;
 	private String nacionalidad;
 	private String tipoCliente;
+	
 	public Integer getId() {
 		return id;
 	}

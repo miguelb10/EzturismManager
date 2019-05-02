@@ -1,36 +1,20 @@
 package com.upc.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
+@IdClass(DetallePaquetePK.class)
 @Table(name="DetallePaquete")
 public class DetallePaquete {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
-	
-	@ManyToOne
-	@JoinColumn(name = "paquete_id", nullable = false)
 	private Paquete paquete;
 	
-	@ManyToOne
-	@JoinColumn(name = "servicio_id", nullable = false)
+	@Id
 	private Servicio servicio;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public Paquete getPaquete() {
 		return paquete;

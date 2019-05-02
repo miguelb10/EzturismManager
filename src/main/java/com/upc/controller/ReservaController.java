@@ -24,36 +24,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import com.upc.entity.Cliente;
+
+import com.upc.entity.Reserva;
 import com.upc.exception.ModeloNotFoundException;
-import com.upc.service.ClienteService;
 import com.upc.service.ReservaService;
 
-@RestController
-@RequestMapping("/clientes")
-public class ClienteController {
-	
+//@RestController
+//@RequestMapping("/reservas")
+public class ReservaController {
+
 	@Autowired
-	private ClienteService clienteService;
+	private ReservaService reservaService;
 	
 	@GetMapping
-	public ResponseEntity<List<Cliente>>  listar(){
+	public ResponseEntity<List<Reserva>>  listar(){
 		
-		List<Cliente> clientes = new ArrayList<>();
-		clientes = clienteService.listar();
+		List<Reserva> reservas = new ArrayList<>();
+		reservas = reservaService.listar();
 		
-		return new ResponseEntity<List<Cliente>>(clientes,HttpStatus.OK);
+		return new ResponseEntity<List<Reserva>>(reservas,HttpStatus.OK);
 		
 	}
 	
 	@GetMapping(value = "/{id}")
-	public Resource<Cliente> listarId(@PathVariable("id") Integer id) {
-		Optional<Cliente> cli = clienteService.listarId(id);
-		if (!cli.isPresent()) {
+	public Resource<Reserva> listarId(@PathVariable("id") Integer id) {
+		Optional<Reserva> res = reservaService.listarId(id);
+		if (!res.isPresent()) {
 			throw new ModeloNotFoundException("ID: " + id);
 		}
 		
-		Resource<Cliente> resource = new Resource<Cliente>(cli.get());
+		Resource<Reserva> resource = new Resource<Reserva>(res.get());
 		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).listarId(id));
 		resource.add(linkTo.withRel("Consulta-resource"));
 		
@@ -61,28 +61,27 @@ public class ClienteController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Object> registrar(@Valid @RequestBody Cliente cliente) {
-		Cliente cli = new Cliente();
-		cli = clienteService.registrar(cliente);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cli.getId())
+	public ResponseEntity<Object> registrar(@Valid @RequestBody Reserva reserva) {
+		Reserva res = new Reserva();
+		res = reservaService.registrar(reserva);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(res.getId())
 				.toUri();
 		return ResponseEntity.created(location).build();
 	}
 	
 	@PutMapping
-	public ResponseEntity<Object> actualizar(@Valid @RequestBody Cliente cliente) {		
-		clienteService.modificar(cliente);
+	public ResponseEntity<Object> actualizar(@Valid @RequestBody Reserva reserva) {		
+		reservaService.modificar(reserva);
 		return new ResponseEntity<Object>(HttpStatus.OK);
 	}
 	
 	@DeleteMapping
 	public void eliminar(@PathVariable Integer id) {
-		Optional<Cliente> cli = clienteService.listarId(id);
-		if (!cli.isPresent()) {
+		Optional<Reserva> res = reservaService.listarId(id);
+		if (!res.isPresent()) {
 			throw new ModeloNotFoundException("ID: " + id);
 		} else {
-			clienteService.eliminar(id);
+			reservaService.eliminar(id);
 		}
 	}
-
 }
