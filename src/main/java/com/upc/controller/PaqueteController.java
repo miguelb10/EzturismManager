@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.upc.dto.PaqueteListaServicioDTO;
+import com.upc.entity.Cliente;
 import com.upc.entity.Paquete;
 import com.upc.exception.ModeloNotFoundException;
 import com.upc.service.PaqueteService;
@@ -60,6 +61,7 @@ public class PaqueteController {
 		return resource;
 	}
 
+	/*
 	@PostMapping
 	public ResponseEntity<Paquete> registrar(@Valid @RequestBody PaqueteListaServicioDTO paqueteDTO) {
 		Paquete paquete = new Paquete();
@@ -67,7 +69,17 @@ public class PaqueteController {
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(paquete.getId())
 				.toUri();
 		return ResponseEntity.created(location).build();
+	}*/
+	
+	@PostMapping
+	public ResponseEntity<Paquete> registrar(@Valid @RequestBody Paquete paquete) {
+		Paquete paq = new Paquete();
+		paq = paqueteService.registrar(paquete);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(paq.getId())
+				.toUri();
+		return ResponseEntity.created(location).build();
 	}
+	
 	@PutMapping
 	public ResponseEntity<Paquete> actualizar(@Valid @RequestBody Paquete paquete) {
 		paqueteService.modificar(paquete);

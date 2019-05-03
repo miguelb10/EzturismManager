@@ -20,8 +20,8 @@ public class PaqueteServiceImpl implements PaqueteService {
 	@Autowired
 	private PaqueteRepository paqueteRepository;
 
-	@Autowired
-	private DetallePaqueteRepository detPaqueteRepository;
+	//@Autowired
+	//private DetallePaqueteRepository detPaqueteRepository;
 
 	@Override
 	public Paquete registrar(Paquete paquete) {
@@ -48,7 +48,7 @@ public class PaqueteServiceImpl implements PaqueteService {
 		return paqueteRepository.findAll();
 	}
 
-	@Transactional
+	/*@Transactional
 	@Override
 	public Paquete registrar(PaqueteListaServicioDTO paqueteDTO) {
 				
@@ -59,6 +59,6 @@ public class PaqueteServiceImpl implements PaqueteService {
 				(paqueteDTO.getPaquete().getId(),servicio.getId()));
 		
 		return paqueteDTO.getPaquete();
-	}
+	}*/
 
 }

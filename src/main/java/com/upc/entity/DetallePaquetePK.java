@@ -18,4 +18,6 @@ public class DetallePaquetePK implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "servicio_id", nullable = false)
 	private Servicio servicio;
+	
+	
 }

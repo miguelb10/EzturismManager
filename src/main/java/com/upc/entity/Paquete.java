@@ -21,6 +21,9 @@ public class Paquete {
 	private String descripcion;
 	private String adicionales;
 	private float precio;
+	@OneToMany(mappedBy = "paquete", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<DetallePaquete> detallePaquete;
 	
 	public Integer getId() {
 		return id;
@@ -46,4 +49,10 @@ public class Paquete {
 	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
+	public List<DetallePaquete> getDetallePaquete() {
+		return detallePaquete;
+	}
+	public void setDetallePaquete(List<DetallePaquete> detallePaquete) {
+		this.detallePaquete = detallePaquete;
+	}	
 }
