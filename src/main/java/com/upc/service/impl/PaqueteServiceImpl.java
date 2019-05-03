@@ -3,19 +3,26 @@ package com.upc.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.upc.dto.PaqueteListaServicioDTO;
 import com.upc.entity.Paquete;
+import com.upc.repository.DetallePaqueteRepository;
 import com.upc.repository.PaqueteRepository;
 import com.upc.service.PaqueteService;
 
 @Service
-public class PaqueteServiceImpl implements PaqueteService{
+public class PaqueteServiceImpl implements PaqueteService {
 
 	@Autowired
 	private PaqueteRepository paqueteRepository;
-	
+
+	@Autowired
+	private DetallePaqueteRepository detPaqueteRepository;
+
 	@Override
 	public Paquete registrar(Paquete paquete) {
 		return paqueteRepository.save(paquete);
@@ -28,7 +35,7 @@ public class PaqueteServiceImpl implements PaqueteService{
 
 	@Override
 	public void eliminar(int id) {
-		paqueteRepository.deleteById(id);		
+		paqueteRepository.deleteById(id);
 	}
 
 	@Override
@@ -39,6 +46,23 @@ public class PaqueteServiceImpl implements PaqueteService{
 	@Override
 	public List<Paquete> listar() {
 		return paqueteRepository.findAll();
+	}
+
+	@Transactional
+	@Override
+	public Paquete registrar(PaqueteListaServicioDTO paqueteDTO) {
+		
+		paqueteDTO.getPaquete()
+		.getDetallePaquete()
+		.forEach(detalle->detalle.setPaquete(paqueteDTO.getPaquete()));
+		
+		paqueteRepository.save(paqueteDTO.getPaquete());
+		
+		paqueteDTO.getLstServicio()
+		.forEach(servicio->detPaqueteRepository.registrar
+				(paqueteDTO.getPaquete().getId(),servicio.getId()));
+		
+		return paqueteDTO.getPaquete();
 	}
 
 }

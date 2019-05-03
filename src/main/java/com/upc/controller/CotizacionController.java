@@ -20,7 +20,7 @@ import com.upc.entity.Cotizacion;
 import com.upc.service.CotizacionService;
 
 @RestController
-@RequestMapping("/cotizacion")
+@RequestMapping("/cotizaciones")
 public class CotizacionController {
 
 	@Autowired

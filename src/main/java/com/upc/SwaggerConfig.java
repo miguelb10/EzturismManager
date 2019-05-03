@@ -14,9 +14,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 	
-	public static final Contact DEFAULT_CONTACT = new Contact("HAMPCODE", "https://www.hampcode.com",
+	public static final Contact DEFAULT_CONTACT = new Contact("EzturismManagerADM", "https://www.hampcode.com",
 			"hmendo81@gmail.com");
-	public static final ApiInfo DEFAULT_API_INFO = new ApiInfo("HospApp Api Documentation", "HospApp Api Documentation", "1.0",
+	public static final ApiInfo DEFAULT_API_INFO = new ApiInfo("EzturismManager Api Documentation", "EzturismManager Api Documentation", "1.0",
 			"PREMIUM", DEFAULT_CONTACT, "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0",
 			new ArrayList<VendorExtension>());
 
