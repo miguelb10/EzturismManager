@@ -23,7 +23,7 @@ public class Cotizacion {
 	@JoinColumn(name = "cliente_id", nullable = false)
 	private Cliente cliente;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "paquete_id", nullable = false)
 	private Paquete paquete;
 	private String notas;

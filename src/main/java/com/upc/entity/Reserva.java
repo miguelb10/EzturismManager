@@ -27,7 +27,15 @@ public class Reserva {
 	@OneToOne
 	@JoinColumn(name = "cotizacion_id", nullable = false)	
 	private Cotizacion cotizacion;
-	
+
+	public Cotizacion getCotizacion() {
+		return cotizacion;
+	}
+
+	public void setCotizacion(Cotizacion cotizacion) {
+		this.cotizacion = cotizacion;
+	}
+
 	public Integer getId() {
 		return id;
 	}

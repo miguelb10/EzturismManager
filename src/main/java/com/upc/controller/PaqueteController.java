@@ -30,7 +30,7 @@ import com.upc.exception.ModeloNotFoundException;
 import com.upc.service.PaqueteService;
 
 @RestController
-@RequestMapping(name="/paquete")
+@RequestMapping("/paquetes")
 public class PaqueteController {
 	
 	@Autowired
@@ -44,7 +44,7 @@ public class PaqueteController {
 
         return new ResponseEntity<List<Paquete>>(paquetes, HttpStatus.OK);
     }
-/*
+
 	@GetMapping(value = "/{id}")
 	public Resource<Paquete> listarId(@PathVariable("id") Integer id) {
 		Optional<Paquete> paq = paqueteService.listarId(id);
@@ -54,10 +54,10 @@ public class PaqueteController {
 		
 		Resource<Paquete> resource = new Resource<Paquete>(paq.get());
 		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).listarId(id));
-		resource.add(linkTo.withRel("Consulta-resource"));
+		resource.add(linkTo.withRel("Paquete-resource"));
 		
 		return resource;
-	}*/
+	}
     @PostMapping
     public ResponseEntity<Object> registrar(@Valid @RequestBody Paquete paquete) {
         Paquete paq = new Paquete();

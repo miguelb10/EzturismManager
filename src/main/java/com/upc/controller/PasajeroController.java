@@ -13,11 +13,11 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-//@RestController
-//@RequestMapping(name="/pasajeros")
+@RestController
+@RequestMapping("/pasajeros")
 public class PasajeroController {
 
-	/*
+
 	@Autowired
     private PasajeroService pasajeroService;
 
@@ -38,5 +38,5 @@ public class PasajeroController {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
-*/
+
 }

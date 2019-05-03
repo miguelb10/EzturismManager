@@ -19,10 +19,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.upc.entity.Cotizacion;
 import com.upc.service.CotizacionService;
 
-//@RestController
-//@RequestMapping(name="/cotizacion")
+@RestController
+@RequestMapping("/cotizacion")
 public class CotizacionController {
-/*
+
 	@Autowired
 	private CotizacionService cotizacionService;
 	
@@ -42,5 +42,5 @@ public class CotizacionController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cot.getId())
                 .toUri();
         return ResponseEntity.created(location).build();
-    }*/
+    }
 }
