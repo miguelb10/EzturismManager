@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 import javax.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,7 +21,7 @@ public class Pasajero {
     private int edad;
 
     @JsonSerialize(using = ToStringSerializer.class)
-    private LocalDateTime fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     private long pasaporte;
 
@@ -56,11 +58,11 @@ public class Pasajero {
         this.edad = edad;
     }
 
-    public LocalDateTime getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

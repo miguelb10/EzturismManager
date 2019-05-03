@@ -68,17 +68,17 @@ public class PaqueteController {
 				.toUri();
 		return ResponseEntity.created(location).build();
 	}
-
 	@PutMapping
-	public ResponseEntity<Object> actualizar(@Valid @RequestBody Paquete paquete) {
+	public ResponseEntity<Paquete> actualizar(@Valid @RequestBody Paquete paquete) {
 		paqueteService.modificar(paquete);
-		return new ResponseEntity<Object>(HttpStatus.OK);
+		return new ResponseEntity<Paquete>(HttpStatus.OK);
 	}
+
 
 	@DeleteMapping
 	public void eliminar(@PathVariable Integer id) {
-		Optional<Paquete> cli = paqueteService.listarId(id);
-		if (!cli.isPresent()) {
+		Optional<Paquete> paq = paqueteService.listarId(id);
+		if (!paq.isPresent()) {
 			throw new ModeloNotFoundException("ID: " + id);
 		} else {
 			paqueteService.eliminar(id);

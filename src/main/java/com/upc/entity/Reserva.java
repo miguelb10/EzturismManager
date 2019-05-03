@@ -1,5 +1,6 @@
 package com.upc.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -22,7 +23,7 @@ public class Reserva {
 	private float precioTotal;
 	private float comision;
 	private String factura;
-	private LocalDateTime fecha;
+	private LocalDate fecha;
 	
 	@OneToOne
 	@JoinColumn(name = "cotizacion_id", nullable = false)	
@@ -66,10 +67,10 @@ public class Reserva {
 	public void setFactura(String factura) {
 		this.factura = factura;
 	}
-	public LocalDateTime getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(LocalDateTime fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}	
 }
