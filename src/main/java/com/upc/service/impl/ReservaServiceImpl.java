@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.upc.entity.Reserva;
 import com.upc.repository.ReservaRepository;
 import com.upc.service.ReservaService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ReservaServiceImpl implements ReservaService{
 	
 	@Autowired

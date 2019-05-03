@@ -29,8 +29,8 @@ import com.upc.entity.Reserva;
 import com.upc.exception.ModeloNotFoundException;
 import com.upc.service.ReservaService;
 
-//@RestController
-//@RequestMapping("/reservas")
+@RestController
+@RequestMapping("/reservas")
 public class ReservaController {
 
 	@Autowired
