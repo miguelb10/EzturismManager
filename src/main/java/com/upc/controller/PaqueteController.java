@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.upc.dto.PaqueteListaServicioDTO;
 import com.upc.entity.Paquete;
 import com.upc.exception.ModeloNotFoundException;
 import com.upc.service.PaqueteService;
@@ -32,18 +33,18 @@ import com.upc.service.PaqueteService;
 @RestController
 @RequestMapping("/paquetes")
 public class PaqueteController {
-	
+
 	@Autowired
 	private PaqueteService paqueteService;
-	
+
 	@GetMapping
-    public ResponseEntity<List<Paquete>> listar(){
+	public ResponseEntity<List<Paquete>> listar() {
 
-        List<Paquete> paquetes = new ArrayList<>();
-        paquetes = paqueteService.listar();
+		List<Paquete> paquetes = new ArrayList<>();
+		paquetes = paqueteService.listar();
 
-        return new ResponseEntity<List<Paquete>>(paquetes, HttpStatus.OK);
-    }
+		return new ResponseEntity<List<Paquete>>(paquetes, HttpStatus.OK);
+	}
 
 	@GetMapping(value = "/{id}")
 	public Resource<Paquete> listarId(@PathVariable("id") Integer id) {
@@ -51,27 +52,29 @@ public class PaqueteController {
 		if (!paq.isPresent()) {
 			throw new ModeloNotFoundException("ID: " + id);
 		}
-		
+
 		Resource<Paquete> resource = new Resource<Paquete>(paq.get());
 		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).listarId(id));
 		resource.add(linkTo.withRel("Paquete-resource"));
-		
+
 		return resource;
 	}
-    @PostMapping
-    public ResponseEntity<Object> registrar(@Valid @RequestBody Paquete paquete) {
-        Paquete paq = new Paquete();
-        paq = paqueteService.registrar(paquete);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(paq.getId())
-                .toUri();
-        return ResponseEntity.created(location).build();
-    }
-	
-    @PutMapping
-	public ResponseEntity<Object> actualizar(@Valid @RequestBody Paquete paquete) {		
+
+	@PostMapping
+	public ResponseEntity<Paquete> registrar(@Valid @RequestBody PaqueteListaServicioDTO paqueteDTO) {
+		Paquete paquete = new Paquete();
+		paquete = paqueteService.registrar(paqueteDTO);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(paquete.getId())
+				.toUri();
+		return ResponseEntity.created(location).build();
+	}
+
+	@PutMapping
+	public ResponseEntity<Object> actualizar(@Valid @RequestBody Paquete paquete) {
 		paqueteService.modificar(paquete);
 		return new ResponseEntity<Object>(HttpStatus.OK);
 	}
+
 	@DeleteMapping
 	public void eliminar(@PathVariable Integer id) {
 		Optional<Paquete> cli = paqueteService.listarId(id);
