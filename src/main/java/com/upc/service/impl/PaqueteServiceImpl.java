@@ -51,11 +51,7 @@ public class PaqueteServiceImpl implements PaqueteService {
 	@Transactional
 	@Override
 	public Paquete registrar(PaqueteListaServicioDTO paqueteDTO) {
-		
-		paqueteDTO.getPaquete()
-		.getDetallePaquete()
-		.forEach(detalle->detalle.setPaquete(paqueteDTO.getPaquete()));
-		
+				
 		paqueteRepository.save(paqueteDTO.getPaquete());
 		
 		paqueteDTO.getLstServicio()
