@@ -29,7 +29,6 @@ import com.upc.dto.PaqueteListaServicioDTO;
 import com.upc.entity.Cliente;
 import com.upc.entity.Paquete;
 import com.upc.exception.ModeloNotFoundException;
-import com.upc.model.entities.Consulta;
 import com.upc.service.PaqueteService;
 
 @RestController
