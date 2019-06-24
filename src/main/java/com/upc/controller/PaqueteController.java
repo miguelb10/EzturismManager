@@ -29,6 +29,7 @@ import com.upc.dto.PaqueteListaServicioDTO;
 import com.upc.entity.Cliente;
 import com.upc.entity.Paquete;
 import com.upc.exception.ModeloNotFoundException;
+import com.upc.model.entities.Consulta;
 import com.upc.service.PaqueteService;
 
 @RestController
@@ -37,6 +38,7 @@ public class PaqueteController {
 
 	@Autowired
 	private PaqueteService paqueteService;
+	
 
 	@GetMapping
 	public ResponseEntity<List<Paquete>> listar() {
@@ -48,17 +50,13 @@ public class PaqueteController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public Resource<Paquete> listarId(@PathVariable("id") Integer id) {
-		Optional<Paquete> paq = paqueteService.listarId(id);
-		if (!paq.isPresent()) {
+	public ResponseEntity<Paquete> listarId(@PathVariable("id") Integer id) {
+		Optional<Paquete> paquete = paqueteService.listarId(id);
+		if (!paquete.isPresent()) {
 			throw new ModeloNotFoundException("ID: " + id);
 		}
 
-		Resource<Paquete> resource = new Resource<Paquete>(paq.get());
-		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).listarId(id));
-		resource.add(linkTo.withRel("Paquete-resource"));
-
-		return resource;
+		return new ResponseEntity<Paquete>(paquete.get(), HttpStatus.OK);
 	}
 
 	/*
