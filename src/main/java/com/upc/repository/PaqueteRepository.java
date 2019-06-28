@@ -7,5 +7,5 @@ import com.upc.entity.Paquete;
 
 @Repository
 public interface PaqueteRepository extends JpaRepository<Paquete, Integer> {
-
+	
 }

@@ -1,7 +1,10 @@
 package com.upc.controller;
 
+import com.upc.entity.DetallePaquete;
+import com.upc.entity.Paquete;
 import com.upc.entity.Servicio;
 import com.upc.exception.ModeloNotFoundException;
+import com.upc.service.PaqueteService;
 import com.upc.service.ServicioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
@@ -27,6 +30,9 @@ public class ServicioController {
 
     @Autowired
     private ServicioService servicioService;
+    
+    @Autowired
+    private PaqueteService paqueteService;
 
     @GetMapping
     public ResponseEntity<List<Servicio>> listar(){
@@ -49,6 +55,16 @@ public class ServicioController {
 		
 		return resource;
 	}
+    
+    @GetMapping(value = "/paquete/{id}")
+   	public ResponseEntity<List<DetallePaquete>> listarServicosPaqueteId(@PathVariable("id") Integer id) {
+    	
+    	Paquete paq = paqueteService.findById(id);
+    	
+   		List<DetallePaquete> detPaq = servicioService.findByPaquete(paq);
+   		   		
+   		return new ResponseEntity<List<DetallePaquete>>(detPaq, HttpStatus.OK);
+   	}
 
     @PostMapping
     public ResponseEntity<Object> registrar(@Valid @RequestBody Servicio servicio) {

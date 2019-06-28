@@ -44,6 +44,11 @@ public class PaqueteServiceImpl implements PaqueteService {
 		return paqueteRepository.findAll();
 	}
 
+	@Override
+	public Paquete findById(int id) {
+		return paqueteRepository.getOne(id);
+	}
+
 	/*@Transactional
 	@Override
 	public Paquete registrar(PaqueteListaServicioDTO paqueteDTO) {
