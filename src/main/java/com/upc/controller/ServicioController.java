@@ -1,6 +1,5 @@
 package com.upc.controller;
 
-import com.upc.entity.Cliente;
 import com.upc.entity.Servicio;
 import com.upc.exception.ModeloNotFoundException;
 import com.upc.service.ServicioService;

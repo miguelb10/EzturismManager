@@ -3,14 +3,10 @@ package com.upc.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.upc.dto.PaqueteListaServicioDTO;
 import com.upc.entity.Paquete;
-import com.upc.repository.DetallePaqueteRepository;
 import com.upc.repository.PaqueteRepository;
 import com.upc.service.PaqueteService;
 

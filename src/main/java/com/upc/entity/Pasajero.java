@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import javax.persistence.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name="pasajeros")

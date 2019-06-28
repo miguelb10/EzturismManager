@@ -27,7 +27,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.upc.entity.Cliente;
 import com.upc.exception.ModeloNotFoundException;
 import com.upc.service.ClienteService;
-import com.upc.service.ReservaService;
 
 @RestController
 @RequestMapping("/clientes")
