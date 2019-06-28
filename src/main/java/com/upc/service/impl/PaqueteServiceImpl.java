@@ -45,7 +45,7 @@ public class PaqueteServiceImpl implements PaqueteService {
 	}
 
 	@Override
-	public Paquete findById(int id) {
+	public Paquete findById(Integer id) {
 		return paqueteRepository.getOne(id);
 	}
 

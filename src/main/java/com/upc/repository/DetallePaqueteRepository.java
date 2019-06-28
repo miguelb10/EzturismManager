@@ -19,6 +19,6 @@ public interface DetallePaqueteRepository extends JpaRepository<DetallePaquete,	
 	Integer registrar (@Param("paqueteId") Integer paqueteId,
 			@Param("servicioId") Integer servicioId);
 	
-	List<DetallePaquete> findByPaquete(Paquete paquete);
+	List<DetallePaquete> findByPaqueteId(Integer id);
 	
 }

@@ -8,5 +8,5 @@ import com.upc.entity.Servicio;
 
 public interface ServicioService extends CrudService<Servicio> {
 	
-	List<DetallePaquete> findByPaquete(Paquete paquete);
+	List<DetallePaquete> findByPaqueteId(Integer id);
 }

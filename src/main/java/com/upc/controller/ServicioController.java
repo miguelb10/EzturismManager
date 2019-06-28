@@ -59,9 +59,9 @@ public class ServicioController {
     @GetMapping(value = "/paquete/{id}")
    	public ResponseEntity<List<DetallePaquete>> listarServicosPaqueteId(@PathVariable("id") Integer id) {
     	
-    	Paquete paq = paqueteService.findById(id);
+    	//Paquete paq = paqueteService.findById(id);
     	
-   		List<DetallePaquete> detPaq = servicioService.findByPaquete(paq);
+   		List<DetallePaquete> detPaq = servicioService.findByPaqueteId(id);
    		   		
    		return new ResponseEntity<List<DetallePaquete>>(detPaq, HttpStatus.OK);
    	}

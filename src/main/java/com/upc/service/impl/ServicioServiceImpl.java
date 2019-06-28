@@ -48,9 +48,10 @@ public class ServicioServiceImpl implements ServicioService {
     }
 
 	@Override
-	public List<DetallePaquete> findByPaquete(Paquete paquete) {
+	public List<DetallePaquete> findByPaqueteId(Integer id) {
 		// TODO Auto-generated method stub
-		return detallePaqueteRepository.findByPaquete(paquete);
+		return detallePaqueteRepository.findByPaqueteId(id);
 	}
 
+	
 }

@@ -62,7 +62,7 @@ public class PaqueteController {
 	}*/
 	
 	@PostMapping
-	public ResponseEntity<Paquete> registrar(@Valid @RequestBody Paquete paquete) {
+	public ResponseEntity<Object> registrar(@Valid @RequestBody Paquete paquete) {
 		Paquete paq = new Paquete();
 		paq = paqueteService.registrar(paquete);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(paq.getId())
@@ -71,9 +71,9 @@ public class PaqueteController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<Paquete> actualizar(@Valid @RequestBody Paquete paquete) {
+	public ResponseEntity<Object> actualizar(@Valid @RequestBody Paquete paquete) {
 		paqueteService.modificar(paquete);
-		return new ResponseEntity<Paquete>(HttpStatus.OK);
+		return new ResponseEntity<Object>(HttpStatus.OK);
 	}
 
 
